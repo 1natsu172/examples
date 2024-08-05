@@ -1,6 +1,7 @@
 import "./style.css";
 import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
+import { Executor } from "./executor.ts";
 
 export default defineContentScript({
   matches: ["*://*/*"],
@@ -28,5 +29,8 @@ export default defineContentScript({
     });
 
     ui.mount();
+
+    const ex = new Executor(ctx);
+    await ex.init();
   },
 });
